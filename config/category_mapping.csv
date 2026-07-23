@@ -1,0 +1,33 @@
+category_raw,category_clean,category_group
+Feature Request,Feature Request,Product Feedback
+Payment Problem,Payment Problem,Billing & Payments
+Performance Issue,Performance Issue,Technical
+Account Suspension,Account Suspension,Access & Security
+Subscription Cancellation,Subscription Cancellation,Subscription
+Data Sync Issue,Data Sync Issue,Technical
+Refund Request,Refund Request,Billing & Payments
+Security Concern,Security Concern,Access & Security
+Login Issue,Login Issue,Access & Security
+Bug Report,Bug Report,Technical
+Refund Req,Refund Request,Billing & Payments
+Subscription Cancel,Subscription Cancellation,Subscription
+account_suspension,Account Suspension,Access & Security
+Perf Issue,Performance Issue,Technical
+feature_request,Feature Request,Product Feedback
+sub_cancellation,Subscription Cancellation,Subscription
+refund_request,Refund Request,Billing & Payments
+security_concern,Security Concern,Access & Security
+payment_problem,Payment Problem,Billing & Payments
+Data Sync,Data Sync Issue,Technical
+Feature Req,Feature Request,Product Feedback
+Acct Suspension,Account Suspension,Access & Security
+Security,Security Concern,Access & Security
+performance_issue,Performance Issue,Technical
+data_sync,Data Sync Issue,Technical
+Payment problem,Payment Problem,Billing & Payments
+BUG,Bug Report,Technical
+LOGIN ISSUE,Login Issue,Access & Security
+Bug report,Bug Report,Technical
+login_issue,Login Issue,Access & Security
+bug_report,Bug Report,Technical
+Login issue,Login Issue,Access & Security

@@ -1,0 +1,21 @@
+# Secrets — never commit API keys
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Redundant data export — identical content to tickets_analytics_ready.parquet
+# (52MB vs 4.5MB for the same rows), kept locally but not worth the repo weight.
+data/clean/tickets_analytics_ready.csv
+
+# Claude Code local tooling state, not project content
+.claude/
