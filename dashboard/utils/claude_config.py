@@ -6,6 +6,7 @@ configured ChatAnthropic instance for use by the LangChain DataFrame agent.
 
 import os
 
+import streamlit as st
 from dotenv import load_dotenv
 from langchain_anthropic import ChatAnthropic
 
@@ -26,15 +27,29 @@ ANALYTICAL_TEMPERATURE = 0.1
 
 
 def get_api_key() -> str:
-    """Reads the Claude API key from the environment. Checks CLAUDE_API_KEY
-    first (the name used in this project's .env.example), then falls back to
-    ANTHROPIC_API_KEY (the LangChain/Anthropic SDK's own default var name),
-    so either naming convention works without code changes."""
+    """Reads the Claude API key. Checks, in order:
+    1. CLAUDE_API_KEY / ANTHROPIC_API_KEY in the environment — populated
+       locally via .env (see .env.example) or set directly in a real
+       deployment environment's env vars.
+    2. st.secrets["CLAUDE_API_KEY"] / st.secrets["ANTHROPIC_API_KEY"] —
+       Streamlit Community Cloud's secrets manager. .env is gitignored and
+       never reaches a Cloud deployment, so this is required there; local
+       .env is checked first so it still works for local dev without
+       needing secrets.toml too.
+    """
     api_key = os.environ.get("CLAUDE_API_KEY") or os.environ.get("ANTHROPIC_API_KEY")
     if not api_key:
+        try:
+            api_key = st.secrets.get("CLAUDE_API_KEY") or st.secrets.get("ANTHROPIC_API_KEY")
+        except Exception:
+            # No secrets.toml at all (e.g. local run with no Cloud secrets
+            # configured) — st.secrets raises rather than returning empty.
+            api_key = None
+    if not api_key:
         raise RuntimeError(
-            "No Claude API key found. Set CLAUDE_API_KEY or ANTHROPIC_API_KEY "
-            "in your environment, or copy .env.example to .env and fill it in."
+            "No Claude API key found. Locally: copy .env.example to .env and "
+            "fill it in. On Streamlit Community Cloud: add CLAUDE_API_KEY in "
+            "your app's Settings -> Secrets."
         )
     return api_key
 
